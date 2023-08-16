@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="buttonContainer">
+      <button id="newGameButton">New Game</button>
+    </div>
     <div id="gameContainer">
       <div id="upper">
-        <div id="deckHolder">
-          <img src="cards/BACK.png" />
-        </div>
+        <div id="deckHolder"></div>
         <div id="singleCardHolder"></div>
-        <div></div>
+        <div id="emptyDiv"></div>
         <div class="aceHolder"></div>
         <div class="aceHolder"></div>
         <div class="aceHolder"></div>
@@ -30,7 +31,7 @@
         <div class="cardHolder"></div>
       </div>
     </div>
-
-    <script src="index.js"></script>
+   
+    <script type="module" src="index.js"></script>
   </body>
 </html>

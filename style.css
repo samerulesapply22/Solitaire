@@ -1,35 +1,89 @@
 body {
   background-color: green;
   display: flex;
-  justify-content: center;
-  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+}
+
+#buttonContainer {
+  margin: 1vh;
+  display: flex;
+  width: 90%;
+}
+
+#newGameButton {
+  padding: 10px 20px;
+  font-size: 2vh;
+  margin: 1vh;
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: whitesmoke;
+}
+
+#newGameButton:hover {
+  background-color: lightgrey;
+  cursor: pointer;
 }
 
 #gameContainer {
-  margin: 10vh;
   width: 90%;
 }
 
 #upper,
 #lower {
   display: flex;
-
 }
 
 #lower {
   margin-top: 1.5vh;
 }
 
-#upper div, #lower div {
+#deckHolder,
+#singleCardHolder,
+#emptyDiv,
+.aceHolder,
+.cardHolder {
   margin: 1vh;
-  height: 25vh;
   width: 20vh;
+  height: 100%;
+  aspect-ratio: 4/5;
+  border: 1px solid black;
+}
+
+.cardHolder {
+  border-color: transparent;
+}
+
+#deckHolder,
+.card.back {
+  background-color: darkred;
+}
+
+#deckHolder {
+  cursor: pointer;
+}
+
+.card {
+  height: 100%;
   border: 1px solid black;
   cursor: pointer;
 }
 
-#upper div img, #lower div img{
-  height: 100%;
+.card img {
   width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
 
+.card.back {
+  cursor: auto;
+}
+
+.card.back img {
+  scale: 0;
+}
+
+.card.inPlaceholder {
+  margin-bottom: -95%;
 }
