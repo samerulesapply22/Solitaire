@@ -88,7 +88,8 @@ function createDeck() {
     }
   }
   deck.forEach((card, index) => (card.img = cardsImg[index]));
-  return shuffle(deck);
+  const finalDeck = deck.map((card) => card.div());
+  return shuffle(finalDeck);
 }
 
 export default createDeck;

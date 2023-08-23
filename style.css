@@ -39,7 +39,7 @@ body {
   margin-top: 1.5vh;
 }
 
-#deckHolder,
+#deckHolderParent,
 #singleCardHolder,
 #emptyDiv,
 .aceHolder,
@@ -48,10 +48,9 @@ body {
   width: 20vh;
   height: 100%;
   aspect-ratio: 4/5;
-  border: 1px solid black;
 }
 
-.cardHolder {
+#emptyDiv, .cardHolder {
   border-color: transparent;
 }
 
@@ -62,6 +61,19 @@ body {
 
 #deckHolder {
   cursor: pointer;
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
+}
+
+
+#singleCardHolder {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.aceHolder {
+  border: 1px solid black;
 }
 
 .card {
@@ -84,6 +96,13 @@ body {
   scale: 0;
 }
 
-.card.inPlaceholder {
+.card.inContainer {
   margin-bottom: -95%;
 }
+
+.card.inDeck {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  height: 85%;
+}
+
