@@ -6,16 +6,38 @@ const singleCardHolder = document.querySelector("#singleCardHolder");
 
 export default function newGame() {
   const deck = createDeckOfDivs();
+
   clean();
   deal();
   iterateDeck();
 
+  deck.forEach((card) =>
+    card.div.addEventListener("click", () => {
+      if (card.div.classList.contains("back")) return;
+      matchToContainer(card);
+    })
+  );
+
+  function matchToContainer(thisCard) {
+    const matchesArray = deck
+      .filter((card) => card.color !== thisCard.color)
+      .filter((card) => card.value === thisCard.value + 1)
+      .filter((card) => card.div.classList.contains("inContainer"))
+      .filter((card) => !card.div.classList.contains("back"));
+    if (!matchesArray.length) return;
+
+    const possibleMatch = matchesArray.shift().div;
+    thisCard.div.classList.replace("inDeck", "inContainer");
+    possibleMatch.append(thisCard.div);
+  }
+
   function deal() {
+    const thisDeck = [...deck];
     cardHolders.forEach((cardHolder, index) => {
       for (let i = 0; i <= index; i++) {
-        const cardDivInContainer = deck.shift();
+        const cardDivInContainer = thisDeck.shift().div;
         cardDivInContainer.className += "inContainer ";
-        cardDivInContainer.className += i !== index ? "back" : null;
+        cardDivInContainer.className += i !== index ? "back" : "";
 
         cardHolder.append(cardDivInContainer);
       }
@@ -23,18 +45,27 @@ export default function newGame() {
   }
 
   function iterateDeck() {
+    const thisDeck = deck.filter(
+      (card) => !card.div.classList.contains("inContainer")
+    );
+    thisDeck.forEach((card) => (card.div.className += "inDeck "));
+
     const deckHolder = document.createElement("div");
     deckHolder.setAttribute("id", "deckHolder");
     deckHolderParent.append(deckHolder);
+
     let currentCardIndex = 0;
     deckHolder.addEventListener("click", () => {
-      if (currentCardIndex >= deck.length) {
+      if (!thisDeck[currentCardIndex]) {
         singleCardHolder.innerHTML = "";
         currentCardIndex = 0;
         return;
       }
-      const cardDivInDeck = deck[currentCardIndex];
-      cardDivInDeck.className += "inDeck ";
+      let cardDivInDeck = thisDeck[currentCardIndex].div;
+      while (!cardDivInDeck.classList.contains("inDeck")) {
+        currentCardIndex++;
+        cardDivInDeck = thisDeck[currentCardIndex].div;
+      }
       singleCardHolder.append(cardDivInDeck);
       currentCardIndex++;
     });

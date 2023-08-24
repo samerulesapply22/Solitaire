@@ -48,6 +48,7 @@ body {
   width: 20vh;
   height: 100%;
   aspect-ratio: 4/5;
+  border-radius: 5px;
 }
 
 #emptyDiv, .cardHolder {
@@ -64,6 +65,7 @@ body {
   height: 100%;
   width: 100%;
   border: 1px solid black;
+  border-radius: 5px;
 }
 
 
@@ -79,6 +81,7 @@ body {
 .card {
   height: 100%;
   border: 1px solid black;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -101,8 +104,7 @@ body {
 }
 
 .card.inDeck {
-  grid-row-start: 1;
-  grid-column-start: 1;
+  grid-area: 1 / 1;
   height: 85%;
 }
 
