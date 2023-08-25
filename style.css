@@ -1,15 +1,17 @@
 body {
   background-color: green;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 90%;
 }
 
+#buttonContainer,
+#gameContainer {
+  width: 85%;
+  margin-left: 10%;
+}
+
 #buttonContainer {
-  margin: 1vh;
+  margin-top: 3%;
   display: flex;
-  width: 90%;
 }
 
 #newGameButton {
@@ -26,15 +28,10 @@ body {
   cursor: pointer;
 }
 
-#gameContainer {
-  width: 90%;
-}
-
 #upper,
 #lower {
   display: flex;
 }
-
 #lower {
   margin-top: 1.5vh;
 }
@@ -45,22 +42,15 @@ body {
 .aceHolder,
 .cardHolder {
   margin: 1vh;
-  width: 20vh;
+  width: 12vh;
   height: 100%;
   aspect-ratio: 4/5;
-  border-radius: 5px;
-}
-
-#emptyDiv, .cardHolder {
-  border-color: transparent;
-}
-
-#deckHolder,
-.card.back {
-  background-color: darkred;
+  border-radius: 6px;
+  border: 1px solid transparent;
 }
 
 #deckHolder {
+  background-color: darkred;
   cursor: pointer;
   height: 100%;
   width: 100%;
@@ -68,10 +58,9 @@ body {
   border-radius: 5px;
 }
 
-
 #singleCardHolder {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-rows: 1;
 }
 
 .aceHolder {
@@ -80,8 +69,9 @@ body {
 
 .card {
   height: 100%;
+  width: 100%;
   border: 1px solid black;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
 }
 
@@ -93,10 +83,15 @@ body {
 
 .card.back {
   cursor: auto;
+  background-color: darkred;
 }
 
 .card.back img {
   scale: 0;
+}
+
+.card.opened img {
+  scale: 1;
 }
 
 .card.inContainer {
@@ -104,7 +99,6 @@ body {
 }
 
 .card.inDeck {
-  grid-area: 1 / 1;
+  grid-area: 1/1;
   height: 85%;
 }
-

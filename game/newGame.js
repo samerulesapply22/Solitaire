@@ -1,12 +1,12 @@
 import createDeckOfDivs from "./createDeck.js";
+import matchToContainer from "./matchToContainer.js";
 
 const cardHolders = document.querySelectorAll(".cardHolder");
 const deckHolderParent = document.getElementById("deckHolderParent");
-const singleCardHolder = document.querySelector("#singleCardHolder");
+const singleCardHolder = document.getElementById("singleCardHolder");
 
 export default function newGame() {
   const deck = createDeckOfDivs();
-
   clean();
   deal();
   iterateDeck();
@@ -14,22 +14,10 @@ export default function newGame() {
   deck.forEach((card) =>
     card.div.addEventListener("click", () => {
       if (card.div.classList.contains("back")) return;
-      matchToContainer(card);
+
+      matchToContainer(deck, card);
     })
   );
-
-  function matchToContainer(thisCard) {
-    const matchesArray = deck
-      .filter((card) => card.color !== thisCard.color)
-      .filter((card) => card.value === thisCard.value + 1)
-      .filter((card) => card.div.classList.contains("inContainer"))
-      .filter((card) => !card.div.classList.contains("back"));
-    if (!matchesArray.length) return;
-
-    const possibleMatch = matchesArray.shift().div;
-    thisCard.div.classList.replace("inDeck", "inContainer");
-    possibleMatch.append(thisCard.div);
-  }
 
   function deal() {
     const thisDeck = [...deck];
@@ -37,7 +25,7 @@ export default function newGame() {
       for (let i = 0; i <= index; i++) {
         const cardDivInContainer = thisDeck.shift().div;
         cardDivInContainer.className += "inContainer ";
-        cardDivInContainer.className += i !== index ? "back" : "";
+        cardDivInContainer.className += i !== index ? "back " : "";
 
         cardHolder.append(cardDivInContainer);
       }
@@ -64,6 +52,7 @@ export default function newGame() {
       let cardDivInDeck = thisDeck[currentCardIndex].div;
       while (!cardDivInDeck.classList.contains("inDeck")) {
         currentCardIndex++;
+        if (!thisDeck[currentCardIndex]) return;
         cardDivInDeck = thisDeck[currentCardIndex].div;
       }
       singleCardHolder.append(cardDivInDeck);
