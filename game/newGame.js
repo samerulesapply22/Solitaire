@@ -1,7 +1,8 @@
 import createDeckOfDivs from "./createDeck.js";
-import matchToContainer from "./matchToContainer.js";
+import { matchToContainer, matchToAceHolder } from "./matches.js";
 
 const cardHolders = document.querySelectorAll(".cardHolder");
+const aceHolders = document.querySelectorAll(".aceHolder");
 const deckHolderParent = document.getElementById("deckHolderParent");
 const singleCardHolder = document.getElementById("singleCardHolder");
 
@@ -14,8 +15,7 @@ export default function newGame() {
   deck.forEach((card) =>
     card.div.addEventListener("click", () => {
       if (card.div.classList.contains("back")) return;
-
-      matchToContainer(deck, card);
+      matchToAceHolder(deck, card) || matchToContainer(deck, card);
     })
   );
 
@@ -65,4 +65,6 @@ function clean() {
   singleCardHolder.innerHTML = "";
   deckHolderParent.innerHTML = "";
   cardHolders.forEach((cardHolder) => (cardHolder.innerHTML = ""));
+  aceHolders.forEach((aceHolder) => (aceHolder.innerHTML = ""));
+  aceHolders.forEach((aceHolder) => (aceHolder.classList.add('empty')));
 }

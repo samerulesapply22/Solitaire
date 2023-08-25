@@ -58,12 +58,13 @@ body {
   border-radius: 5px;
 }
 
-#singleCardHolder {
+#singleCardHolder,
+.aceHolder {
   display: grid;
   grid-template-rows: 1;
 }
 
-.aceHolder {
+.empty {
   border: 1px solid black;
 }
 
@@ -90,15 +91,12 @@ body {
   scale: 0;
 }
 
-.card.opened img {
-  scale: 1;
-}
-
 .card.inContainer {
   margin-bottom: -95%;
 }
 
-.card.inDeck {
+.card.inDeck,
+.card.inAceHolder {
   grid-area: 1/1;
-  height: 85%;
+  height: 86%;
 }
